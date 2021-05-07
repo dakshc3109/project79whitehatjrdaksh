@@ -1,29 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Project 79</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-    <div>
-   <div class="menu_div">
-       <div id="first">
-       <button id="menu_list" onclick="getmenu()">Show Menu</button>
-       <div id="display_menu"></div>
-    </div>
-       <div class="block2">
-           <div id="display_addmenu">
-           </div>
-       </div>
-   </div> 
-   <div id="block2">
-       <input id="add_item" placeholder="Type name of the pizza that you want">
-       <button id="recommendAnewPizza" onclick="additem()">Recommend A New Pizza</button>
-   </div>
-</div>
-</body>
-</html>
+var menu_list_array = [
+    "Chicken Tandoori Pizza",
+    "Veg Supreme Pizza",
+    "Panner Tikka Pizza",
+    "Deluxe Veggie Pizza",
+    "Veg Extravaganza Pizza"
+];
+
+function getmenu(){
+    var htmldata;
+    htmldata = "<ol class='menulist'>"
+    menu_list_array.sort();
+    for(var i=0;i<menu_list_array.length;i++){
+    htmldata=htmldata+'<li>' + menu_list_array[i] + '</li>'
+    }
+    htmldata=htmldata+"</ol>"
+    document.getElementById("display_menu").innerHTML = htmldata;
+    console.log(htmldata);
+}
+
+function additem(){
+    var htmldata;
+    var item= document.getElementById("add_item").value;
+    menu_list_array.push(item);
+    menu_list_array.sort();
+    htmldata = "<section class='cards'>";
+    htmldata = "<ol class='menulist'>"
+    for(var i = 0;i<menu_list_array.length;i++){
+        htmldata=htmldata+"<div class='card'>"+'<li>'+ menu_list_array[i] + '</li>'+"</div>"
+    }
+    htmldata=htmldata+"</ol>"
+    htmldata=htmldata+"</section>"
+    document.getElementById("display_addmenu").innerHTML = htmldata;
+}
